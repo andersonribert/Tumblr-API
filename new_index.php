@@ -61,37 +61,15 @@
 </head>
 <body style="background-color:#2c4762" onload="setInterval('ShowTimes()',500)">
 
-<h1 class="h1bigger">Welcome to Watch the Front!</h1>	
+<h1 class="h1bigger">Welcome!</h1>	
 
 <h1> To sign up : </h1>
 </br>
 </br>
-<div class= "homebuttonadmin">
-<button id="buttonstyle" onClick="parent.location='../watchthefront/admin/admin.php'">Admin</button>
 </div>
-
-<form action="add.php" method="get">
-</br>
-<input type='hidden' name='name' value='<?php echo $user->response->user->name; ?>'>
-<input class="buttonstyle" type="submit" value="Add Me" ></form>
-</br>
-</br>
-<form action="remove.php" method="get">
-<input class="buttonstyle" type="submit" value="Remove Me" name ="remove"></br>
-</br>
-</br>
-</br>
-</br>
-<iframe width="400px" height="400px" frameborder = "0" scrolling = "auto" class="smallpreview" src="http://dev-crushing-ba7737ca.ewr01.tumblr.net/watchthefront_dev/watch_small.html">
-<script type="text/javascript">
-    if (window.parent.document.title == 'WATCH THE FRONT!') {    
-        document.getElementByClass('topcell').style.fontSize = "10%";
-    }    
+  
 </script></iframe>
 </form>
-
-</body>
-</html>
 
 
 <?php 
@@ -99,12 +77,13 @@
         
         
         
-        //echo '<pre>', HtmlSpecialChars(print_r($user, 1)), '</pre>';
-		//echo '<h1> Hi ', HtmlSpecialChars($user->response->user->name), 
-			//'!! <p>You already signed up!</p> <p>Loading Sign Up Page</p>!</h1>';
-		//echo '<pre>', HtmlSpecialChars(print_r($user, 1)), '</pre>';
+        	echo '<pre>', HtmlSpecialChars(print_r($user, 1)), '</pre>';
+		echo '<h1> Hi ', HtmlSpecialChars($user->response->user->name), 
+		
+		echo '<pre>', HtmlSpecialChars(print_r($user, 1)), '</pre>';
 			
 ?>
+
 </body>
 </html>
 <?php
