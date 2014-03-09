@@ -13,7 +13,7 @@
 	<package>net.manuellemos.oauth</package>
 
 	<version>@(#) $Id: oauth_client.php,v 1.83 2014/01/27 09:59:39 mlemos Exp $</version>
-	<copyright>Copyright ï¿½ (C) Manuel Lemos 2012</copyright>
+	<copyright>Copyright © (C) Manuel Lemos 2012</copyright>
 	<title>OAuth client</title>
 	<author>Manuel Lemos</author>
 	<authoraddress>mlemos-at-acm.org</authoraddress>
@@ -142,7 +142,7 @@ class oauth_client_class
 	</variable>
 {/metadocument}
 */
-	var $debug = true;
+	var $debug = false;
 
 /*
 {metadocument}
@@ -159,7 +159,7 @@ class oauth_client_class
 	</variable>
 {/metadocument}
 */
-	var $debug_http = true;
+	var $debug_http = false;
 
 /*
 {metadocument}
@@ -1081,11 +1081,7 @@ class oauth_client_class
 		if(IsSet($_SESSION['OAUTH_ACCESS_TOKEN'][$access_token_url]))
 			$access_token = $_SESSION['OAUTH_ACCESS_TOKEN'][$access_token_url];
 		else
-			$access_token = array(
-						'value'=>'M83vBtUlW6Dyy8GD8d1jn0uFaFoZfTMHLmfnfG51gN95NCGRxx',
-						'secret'=>'wPRSgTJ23yStxnejWvx5UdnrcAD79dQ2iLsgiseiMhVDJTrxdv',
-						'authorized'=>true
-					);
+			$access_token = array();
 		return true;
 	}
 /*
@@ -2228,7 +2224,6 @@ class oauth_client_class
 					if($this->debug)
 						$this->OutputDebug('The OAuth access token is not set');
 					$access_token = array();
-				
 				}
 				if(!IsSet($access_token['authorized']))
 				{
