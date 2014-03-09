@@ -54,7 +54,7 @@
 			Before proceeding to the actual OAuth authorization process, you
 			need to have registered your application with the OAuth server. The
 			registration provides you values to set the variables
-			<variablelink>client_id</variablelink> and 
+			<variablelink>client_id</variablelink> and
 			<variablelink>client_secret</variablelink>. Some servers also
 			provide an additional value to set the
 			<variablelink>api_key</variablelink> variable.<paragraphbreak />
@@ -142,7 +142,7 @@ class oauth_client_class
 	</variable>
 {/metadocument}
 */
-	var $debug = true;
+	var $debug = false;
 
 /*
 {metadocument}
@@ -159,7 +159,7 @@ class oauth_client_class
 	</variable>
 {/metadocument}
 */
-	var $debug_http = true;
+	var $debug_http = false;
 
 /*
 {metadocument}
@@ -812,7 +812,7 @@ class oauth_client_class
 			<usage>Check this variable after calling the
 				<functionlink>CallAPI</functionlink> function if the API calls and you
 				need to process the error depending the response status.
-				<integervalue>200</integervalue> means no error. 
+				<integervalue>200</integervalue> means no error.
 				<integervalue>0</integervalue> means the server response was not
 				retrieved.</usage>
 		</documentation>
@@ -990,7 +990,7 @@ class oauth_client_class
 			<name>access_token</name>
 			<type>HASH</type>
 			<documentation>
-				<purpose>Associative array with properties of the access token. 
+				<purpose>Associative array with properties of the access token.
 					The array may have set the following
 					properties:<paragraphbreak />
 					<stringvalue>value</stringvalue>: string value of the access
@@ -1081,11 +1081,7 @@ class oauth_client_class
 		if(IsSet($_SESSION['OAUTH_ACCESS_TOKEN'][$access_token_url]))
 			$access_token = $_SESSION['OAUTH_ACCESS_TOKEN'][$access_token_url];
 		else
-			$access_token = array(
-						'value'=>'M83vBtUlW6Dyy8GD8d1jn0uFaFoZfTMHLmfnfG51gN95NCGRxx',
-						'secret'=>'wPRSgTJ23yStxnejWvx5UdnrcAD79dQ2iLsgiseiMhVDJTrxdv',
-						'authorized'=>true
-					);
+			$access_token = array();
 		return true;
 	}
 /*
@@ -1734,10 +1730,10 @@ class oauth_client_class
 					<stringvalue>ResponseContentType</stringvalue>: content type
 						that should be considered when decoding the API request
 						response. This overrides the <tt>Content-Type</tt> header
-						returned by the server. If the content type is 
+						returned by the server. If the content type is
 						<stringvalue>application/x-www-form-urlencoded</stringvalue>
 						the function will parse the data returning an array of
-						key-value pairs. If the content type is 
+						key-value pairs. If the content type is
 						<stringvalue>application/json</stringvalue> the response will
 						be decode as a JSON-encoded data type. Other content type
 						values will make the function return the original response
@@ -2027,7 +2023,7 @@ class oauth_client_class
 			case 'Twitter':
 				$this->oauth_version = '1.0a';
 				$this->request_token_url = 'https://api.twitter.com/oauth/request_token';
-				$this->dialog_url = 'https://api.twitter.com/oauth/authenticate';
+				$this->dialog_url = 'https://api.twitter.com/oauth/authorize';
 				$this->access_token_url = 'https://api.twitter.com/oauth/access_token';
 				$this->url_parameters = false;
 				break;
@@ -2228,7 +2224,6 @@ class oauth_client_class
 					if($this->debug)
 						$this->OutputDebug('The OAuth access token is not set');
 					$access_token = array();
-				
 				}
 				if(!IsSet($access_token['authorized']))
 				{
@@ -2236,7 +2231,7 @@ class oauth_client_class
 						$this->OutputDebug('Requesting the unauthorized OAuth token');
 					if(!$this->GetRequestTokenURL($url))
 						return false;
-					$url = str_replace('{SCOPE}', UrlEncode($this->scope), $url); 
+					$url = str_replace('{SCOPE}', UrlEncode($this->scope), $url);
 					if(!$this->GetRedirectURI($redirect_uri))
 						return false;
 					$oauth = array(
