@@ -1,0 +1,12 @@
+{
+"tumblr": {
+	"callback_url": "",
+	"client_id": "",
+	"client_secret": ""
+	},
+"twitter": {
+	"callback_url": "",
+	"client_id": "",
+	"client_secret": ""
+	}
+}
